@@ -116,7 +116,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Delete old repository and recreate with new packages
+      - name: Delete old repository and Recreate with new packages
         run: |
           git push origin -d repository-x86_64-glibc
           git switch --orphan repository-x86_64-glibc
