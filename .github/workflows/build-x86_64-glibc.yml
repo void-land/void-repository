@@ -64,28 +64,30 @@ jobs:
           common/travis/prepare.sh &&
           common/travis/fetch-xtools.sh
 
-      # All build steps
+      # build packages
+
       - name: Chrome
-        run: (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg google-chrome)
+        run: |
+          sed -i '/^repository=nonfree/d' /hostrepo/srcpkgs/google-chrome/template
+          (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg google-chrome)
 
       # - name: Fastfetch
       #   run: (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg fastfetch)
 
       - name: List Packages
         run: |
-          ls -la ~/hostdir
-          ls -la ~/hostdir/binpkgs
+          ls -la ~/hostdir/binpkgs/
+          ls -la ~/hostdir/binpkgs/nonfree
 
-      # We need to sign the packages with our private key so that they will be accepted by xbps remotely
       # See: https://docs.voidlinux.org/xbps/repositories/signing.html
 
       - name: Generate Pam
         run: |
           openssl genrsa -out private.pem
 
-      - name: Sign repository
+      - name: Sign nonfree repository
         run: |
-          xbps-rindex --privkey ~/private.pem --sign --signedby "${{ env.REPO_NAME }}-github-action" ~/hostdir/binpkgs
+          xbps-rindex --privkey ~/private.pem --sign --signedby "${{ env.REPO_NAME }}-github-action" ~/hostdir/binpkgs/
           xbps-rindex --privkey ~/private.pem --sign-pkg ~/hostdir/binpkgs/*.xbps
 
       # - name: Compress Packages
