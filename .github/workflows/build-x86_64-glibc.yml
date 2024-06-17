@@ -46,7 +46,7 @@ jobs:
           sed -i 's|repo-default|repo-ci|g' /etc/xbps.d/*-repository-*.conf
           xbps-install -Syu xbps
           xbps-install -Syu
-          xbps-install -y tar curl openssl
+          xbps-install -y tar curl openssl openssh
 
       - name: Clone Void-Packages and prepare
         run: |
