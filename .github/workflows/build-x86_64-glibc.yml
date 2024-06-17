@@ -65,14 +65,16 @@ jobs:
           common/travis/fetch-xtools.sh
 
       # All build steps
-      # First Hyprland's dependencies
-      - name: Chrome
-        run: (/hostrepo/xbps-src -j$(nproc) -s pkg google-chrome)
+      # - name: Chrome
+      #   run: (/hostrepo/xbps-src -j$(nproc) -s pkg google-chrome)
+
+      - name: Fastfetch
+        run: (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg fastfetch)
 
       - name: List Packages
         run: |
-          ls -la /hostrepo/hostdir
-          ls -la /hostrepo/hostdir/binpkgs
+          ls -la ~/hostdir
+          ls -la ~/hostdir/binpkgs
 
       # We need to sign the packages with our private key so that they will be accepted by xbps remotely
       # See: https://docs.voidlinux.org/xbps/repositories/signing.html
@@ -83,8 +85,8 @@ jobs:
 
       - name: Sign repository
         run: |
-          xbps-rindex --privkey ~/private.pem --sign --signedby "${{ env.REPO_NAME }}-github-action" /hostrepo/hostdir/binpkgs
-          xbps-rindex --privkey ~/private.pem --sign-pkg /hostrepo/hostdir/binpkgs/*.xbps
+          xbps-rindex --privkey ~/private.pem --sign --signedby "${{ env.REPO_NAME }}-github-action" ~/hostdir/binpkgs
+          xbps-rindex --privkey ~/private.pem --sign-pkg ~/hostdir/binpkgs/*.xbps
 
       # - name: Compress Packages
       #   run: |
