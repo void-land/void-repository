@@ -77,7 +77,6 @@ jobs:
       - name: List Packages
         run: |
           ls -la ~/hostdir/binpkgs/
-          ls -la ~/hostdir/binpkgs/nonfree
 
       # See: https://docs.voidlinux.org/xbps/repositories/signing.html
 
