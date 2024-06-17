@@ -122,10 +122,10 @@ jobs:
 
       - name: Delete old repository and Recreate with new packages
         run: |
-          git push origin -d repository-x86_64-glibc
-          git switch --orphan repository-x86_64-glibc
           git lfs install
           git lfs track "*.xbps"
+          git push origin -d repository-x86_64-glibc
+          git switch --orphan repository-x86_64-glibc
           git add .
           git commit -m "upload: latest packages to repository"
           git push origin repository-x86_64-glibc
