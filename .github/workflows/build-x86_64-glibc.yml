@@ -66,7 +66,7 @@ jobs:
 
       # All build steps
       - name: Chrome
-        run: (/hostrepo/xbps-src -j$(nproc) -s pkg google-chrome)
+        run: (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg google-chrome)
 
       # - name: Fastfetch
       #   run: (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg fastfetch)
