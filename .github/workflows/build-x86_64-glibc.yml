@@ -65,11 +65,11 @@ jobs:
           common/travis/fetch-xtools.sh
 
       # All build steps
-      # - name: Chrome
-      #   run: (/hostrepo/xbps-src -j$(nproc) -s pkg google-chrome)
+      - name: Chrome
+        run: (/hostrepo/xbps-src -j$(nproc) -s pkg google-chrome)
 
-      - name: Fastfetch
-        run: (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg fastfetch)
+      # - name: Fastfetch
+      #   run: (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg fastfetch)
 
       - name: List Packages
         run: |
