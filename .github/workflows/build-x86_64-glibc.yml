@@ -47,10 +47,6 @@ jobs:
           xbps-install -Syu
           xbps-install -y tar curl openssl
 
-      - name: Make void pkgs directory
-        run: |
-          cd $HOME
-
       - name: Clone Void-Packages and prepare
         run: |
           git clone --depth 1 https://github.com/void-linux/void-packages.git
@@ -82,7 +78,9 @@ jobs:
 
       - name: Generate Pam
         run: |
+          cd ~
           openssl genrsa -out private.pem
+          ls -la
 
       - name: Sign nonfree repository
         run: |
