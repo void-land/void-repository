@@ -75,10 +75,11 @@ jobs:
       - name: Generate Private Pem
         run: |
           cd ~
-          ssh-keygen -t rsa -m PEM -f private.pem -N ''
+          ssh-keygen -t rsa -b 4096 -m PEM -f privkey.pem -N ""
 
       - name: Sign nonfree repository
         run: |
+          export XBPS_PASSPHRASE=""
           xbps-rindex --privkey ~/private.pem --sign --signedby "${{ env.REPO_NAME }}-github-action" ~/hostdir/binpkgs/
           xbps-rindex --privkey ~/private.pem --sign-pkg ~/hostdir/binpkgs/*.xbps
 
