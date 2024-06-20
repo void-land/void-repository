@@ -79,7 +79,6 @@ jobs:
 
       - name: Sign nonfree repository
         run: |
-          export XBPS_PASSPHRASE=""
           xbps-rindex --privkey ~/private.pem --sign --signedby "${{ env.REPO_NAME }}-github-action" ~/hostdir/binpkgs/
           xbps-rindex --privkey ~/private.pem --sign-pkg ~/hostdir/binpkgs/*.xbps
 
