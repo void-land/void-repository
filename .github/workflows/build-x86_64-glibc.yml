@@ -75,7 +75,7 @@ jobs:
       - name: Generate Private Pem
         run: |
           cd ~
-          ssh-keygen -t rsa -b 4096 -m PEM -f privkey.pem -N ''
+          ssh-keygen -t rsa -m PEM -f privkey.pem -N ''
 
       - name: Sign nonfree repository
         run: |
