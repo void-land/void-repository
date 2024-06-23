@@ -76,10 +76,11 @@ jobs:
         run: |
           cd ~
           curl -O https://raw.githubusercontent.com/void-land/void-repository/main/pem/privkey.pem
+          ls -la
 
-      - name: Sign nonfree repository
+      - name: Sign repository
         run: |
-          export XBPS_PASSPHRASE="hesam-init"
+          export XBPS_PASSPHRASE=${{ secrets.PRIVATE_PEM_PASSPHRASE }}
           xbps-rindex --privkey ~/private.pem --sign --signedby "${{ env.REPO_NAME }}-github-action" ~/hostdir/binpkgs/
           xbps-rindex --privkey ~/private.pem --sign-pkg ~/hostdir/binpkgs/*.xbps
 
