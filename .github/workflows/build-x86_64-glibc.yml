@@ -77,17 +77,15 @@ jobs:
         run: |
           ls -la ~/hostdir/binpkgs/
 
-      - name: Get Private Pem
+      - name: Generate Private Pem
         run: |
           cd ~
-          curl -O https://raw.githubusercontent.com/void-land/void-repository/main/pem/private.pem
-          ls -la
+          ssh-keygen -t rsa -m PEM -f privkey.pem -N ''
 
       - name: Sign repository
         run: |
-          export XBPS_PASSPHRASE="hesam"
-          xbps-rindex --privkey ~/private.pem --sign --signedby "hesam" ~/hostdir/binpkgs
-          xbps-rindex --privkey ~/private.pem --sign-pkg ~/hostdir/binpkgs/*.xbps
+          xbps-rindex --privkey ./privkey.pem --sign --signedby "${{ env.REPO_NAME }}-github-action" ~/hostdir/binpkgs
+          xbps-rindex --privkey ./privkey.pem --sign-pkg ~/hostdir/binpkgs/*.xbps
 
       - name: Compress Packages
         run: |
