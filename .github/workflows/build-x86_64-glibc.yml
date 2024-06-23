@@ -68,6 +68,11 @@ jobs:
           sed -i '/^repository=nonfree/d' /hostrepo/srcpkgs/google-chrome/template
           (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg google-chrome)
 
+      - name: Build Fastfetch
+        run: |
+          (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg fastfetch)
+
+
       - name: List Packages
         run: |
           ls -la ~/hostdir/binpkgs/
