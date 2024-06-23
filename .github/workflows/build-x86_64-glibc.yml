@@ -81,7 +81,7 @@ jobs:
       - name: Sign repository
         run: |
           export XBPS_PASSPHRASE="hesam"
-          xbps-rindex --privkey ~/private.pem --sign --signedby "${{ env.REPO_NAME }}-github-action" ~/hostdir/binpkgs/
+          xbps-rindex --privkey ~/private.pem --sign --signedby "hesam" ~/hostdir/binpkgs
           xbps-rindex --privkey ~/private.pem --sign-pkg ~/hostdir/binpkgs/*.xbps
 
       - name: Compress Packages
