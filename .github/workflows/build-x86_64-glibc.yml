@@ -81,11 +81,12 @@ jobs:
         run: |
           cd ~
           ssh-keygen -t rsa -m PEM -f privkey.pem -N ''
+          ls -la
 
       - name: Sign repository
         run: |
-          xbps-rindex --privkey ./privkey.pem --sign --signedby "${{ env.REPO_NAME }}-github-action" ~/hostdir/binpkgs
-          xbps-rindex --privkey ./privkey.pem --sign-pkg ~/hostdir/binpkgs/*.xbps
+          xbps-rindex --privkey ~/privkey.pem --sign --signedby "${{ env.REPO_NAME }}-github-action" ~/hostdir/binpkgs
+          xbps-rindex --privkey ~/privkey.pem --sign-pkg ~/hostdir/binpkgs/*.xbps
 
       - name: Compress Packages
         run: |
