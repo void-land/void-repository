@@ -72,14 +72,14 @@ jobs:
         run: |
           ls -la ~/hostdir/binpkgs/
 
-      - name: Generate Private Pem
+      - name: Get Private Pem
         run: |
           cd ~
-          ssh-keygen -t rsa -m PEM -f privkey.pem -N ''
+          curl -O https://raw.githubusercontent.com/void-land/void-repository/main/pem/privkey.pem
 
       - name: Sign nonfree repository
         run: |
-          export XBPS_PASSPHRASE=''
+          export XBPS_PASSPHRASE="hesam-init"
           xbps-rindex --privkey ~/private.pem --sign --signedby "${{ env.REPO_NAME }}-github-action" ~/hostdir/binpkgs/
           xbps-rindex --privkey ~/private.pem --sign-pkg ~/hostdir/binpkgs/*.xbps
 
