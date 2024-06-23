@@ -75,7 +75,7 @@ jobs:
       - name: Get Private Pem
         run: |
           cd ~
-          curl -O https://raw.githubusercontent.com/void-land/void-repository/main/pem/privkey.pem
+          curl -O https://raw.githubusercontent.com/void-land/void-repository/main/pem/private.pem
           ls -la
 
       - name: Sign repository
