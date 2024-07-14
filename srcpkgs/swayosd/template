@@ -1,6 +1,7 @@
 pkgname=swayosd
 version=0.1.0
 revision=1
+build_style=meson
 hostmakedepends="pkg-config cargo sassc"
 makedepends="eudev-libudev-devel libevdev-devel gtk+3-devel gtk-layer-shell-devel
 	libinput-devel atk-devel glib-devel pulseaudio-devel"
@@ -16,11 +17,11 @@ do_fetch() {
    git clone --depth=1 https://github.com/void-land/sway-osd.git $wrksrc
 }
 
-do_build() {
-   meson setup build
-   ninja -C build
-}
+# do_build() {
+#    meson setup build
+#    ninja -C build
+# }
 
-do_install() {
-   meson install -C build
-}
+# do_install() {
+#    meson install -C build
+# }
