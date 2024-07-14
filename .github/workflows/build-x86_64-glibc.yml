@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image: ghcr.io/void-linux/void-buildroot-${{ matrix.config.libc }}:20231230R1
+      image: ghcr.io/void-linux/void-buildroot-${{ matrix.config.libc }}:20240526R1
       options: --platform ${{ matrix.config.platform }}
       env:
         PATH: "/usr/libexec/chroot-git:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin:/usr/local/bin:/tmp/bin"
