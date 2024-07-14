@@ -1,0 +1,26 @@
+pkgname=swayosd
+version=0.1.0
+revision=1
+hostmakedepends="pkg-config cargo sassc"
+makedepends="eudev-libudev-devel libevdev-devel gtk+3-devel gtk-layer-shell-devel
+	libinput-devel atk-devel glib-devel pulseaudio-devel"
+
+short_desc="GTK based on screen display for keyboard shortcuts like volume"
+license="GPL-3.0-only"
+homepage="https://github.com/ErikReider/SwayOSD"
+maintainer="hesam-init <hesam.init@gmail.com>"
+
+conflicts="swayosd"
+
+do_fetch() {
+   git clone --depth=1 https://github.com/void-land/sway-osd.git $wrksrc
+}
+
+do_build() {
+   meson setup build
+   ninja -C build
+}
+
+do_install() {
+   meson install -C build
+}
