@@ -9,7 +9,7 @@ on:
 env:
   REPO_OWNER: "${{ github.repository_owner }}"
   REPO_NAME: "${{ github.event.repository.name }}"
-  PKGS_FILE: "packages.tar.gz"
+  PACKAGES_FILE: "packages.tar.gz"
 
 jobs:
   build:
@@ -45,7 +45,7 @@ jobs:
           ls -la
           sed -i 's|repo-default|repo-ci|g' /etc/xbps.d/*-repository-*.conf
           xbps-install -Syu || xbps-install -yu xbps
-          xbps-install -y tar curl
+          xbps-install -y tar curl openssl openssh
 
       - name: Clone Void-Packages and prepare
         run: |
@@ -89,58 +89,58 @@ jobs:
           ssh-keygen -t rsa -b 4096 -m PEM -f privkey.pem -N ''
           ls -la
 
-      # - name: Sign repository
-      #   run: |
-      #     xbps-rindex --privkey ~/privkey.pem --sign --signedby "${{ env.REPO_NAME }}-github-action" ~/hostdir/binpkgs
-      #     xbps-rindex --privkey ~/privkey.pem --sign-pkg ~/hostdir/binpkgs/*.xbps
+      - name: Sign repository
+        run: |
+          xbps-rindex --privkey ~/privkey.pem --sign --signedby "${{ env.REPO_NAME }}-github-action" ~/hostdir/binpkgs
+          xbps-rindex --privkey ~/privkey.pem --sign-pkg ~/hostdir/binpkgs/*.xbps
 
-      # - name: Compress Packages
-      #   run: |
-      #     cd ~/hostdir/binpkgs
-      #     tar -czvf ${{ env.PKGS_FILE }} *
-      #     ls -la
+      - name: Compress Packages
+        run: |
+          cd ~/hostdir/binpkgs
+          tar -czvf ${{ env.PACKAGES_FILE }} *
+          ls -la
 
-      # - name: Upload artifact
-      #   uses: actions/upload-artifact@v4
-      #   with:
-      #     name: ${{ env.REPO_NAME }}
-      #     path: ~/hostdir/binpkgs/${{ env.PKGS_FILE }}
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.REPO_NAME }}
+          path: ~/hostdir/binpkgs/${{ env.PACKAGES_FILE }}
 
-  # publish:
-  #   name: Pack and Publish
-  #   needs: build
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Download artifact
-  #       uses: actions/download-artifact@v4
-  #       with:
-  #         name: ${{ env.REPO_NAME }}
-  #         path: ~/
+  publish:
+    name: Pack and Publish
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ env.REPO_NAME }}
+          path: ~/
 
-  #     - name: Checkout repository
-  #       uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-  #     - name: Configure Git
-  #       run: |
-  #         git config user.name "github-actions[bot]"
-  #         git config user.email "github-actions[bot]@users.noreply.github.com"
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
 
-  #     - name: Update or Create Repository Branch
-  #       run: |
-  #         if git ls-remote --exit-code --heads origin repository-x86_64-glibc; then
-  #           echo "Branch exists, deleting it"
-  #           git push origin -d repository-x86_64-glibc
-  #         else
-  #           echo "Branch does not exist, will create new"
-  #         fi
-  #         git switch --orphan repository-x86_64-glibc
+      - name: Update or Create Repository Branch
+        run: |
+          if git ls-remote --exit-code --heads origin repository-x86_64-glibc; then
+            echo "Branch exists, deleting it"
+            git push origin -d repository-x86_64-glibc
+          else
+            echo "Branch does not exist, will create new"
+          fi
+          git switch --orphan repository-x86_64-glibc
 
-  #     - name: Extract and Add Packages
-  #       run: |
-  #         tar -xvf ~/${{ env.PKGS_FILE }} -C ./
-  #         git add .
+      - name: Extract and Add Packages
+        run: |
+          tar -xvf ~/${{ env.PACKAGES_FILE }} -C ./
 
-  #     - name: Commit and Push Changes
-  #       run: |
-  #         git commit -m "Upload latest packages to repository"
-  #         git push origin repository-x86_64-glibc
+      - name: Commit and Push Changes
+        run: |
+          git add -A
+          git commit -m "Upload latest packages to repository"
+          git push origin repository-x86_64-glibc
