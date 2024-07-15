@@ -25,7 +25,7 @@ do_install() {
 
     vcopy share/hiddify/* opt/${pkgname}
 
-    ln -sf /opt/${pkgname}/hiddify "${DESTDIR}/usr/bin/"
+    ln -sf /opt/${pkgname}/hiddify /usr/bin/hiddify
 
     # vcopy share/hiddify/lib/* usr/lib
 
