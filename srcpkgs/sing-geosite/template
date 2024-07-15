@@ -22,14 +22,14 @@ post_build() {
 }
 
 do_install() {
-   vmkdir usr/share/sing-box
-   vmkdir usr/share/sing-box/rule-set
+   vmkdir usr/share/${pkgname}
+   vmkdir usr/share/${pkgname}/rule-set
 
    for file in *.db; do
-      vinstall $file 644 usr/share/sing-box
+      vinstall $file 644 usr/share/${pkgname}
    done
 
    for file in rule-set/*; do
-      vinstall $file 644 usr/share/sing-geosite/rule-set
+      vinstall $file 644 usr/share/${pkgname}/rule-set
    done
 }

@@ -22,14 +22,14 @@ post_build() {
 }
 
 do_install() {
-   vmkdir usr/share/sing-geoip
-   vmkdir usr/share/sing-geoip/rule-set
+   vmkdir usr/share/${pkgname}
+   vmkdir usr/share/${pkgname}/rule-set
 
    for file in *.db; do
-      vinstall $file 644 usr/share/sing-geoip
+      vinstall $file 644 usr/share/${pkgname}
    done
 
    for file in rule-set/*; do
-      vinstall $file 644 usr/share/sing-geoip/rule-set
+      vinstall $file 644 usr/share/${pkgname}/rule-set
    done
 }
