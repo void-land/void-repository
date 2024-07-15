@@ -30,5 +30,5 @@ do_install() {
 }
 
 post_install() {
-    ln -sf /opt/${pkgname}/hiddify ${DESTDIR}/usr/bin/hiddify
+    ln -sf /opt/${pkgname}/hiddify ${DESTDIR}/usr/bin/
 }
