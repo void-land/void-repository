@@ -24,24 +24,12 @@ post_build() {
 do_install() {
    vmkdir usr/share/sing-box
    vmkdir usr/share/sing-box/rule-set
-}
 
-post_install() {
-   ls -la
-}
+   for file in *.db; do
+      vinstall $file 644 usr/share/sing-box
+   done
 
-sing-geoip-db_package() {
-   short_desc="sing-geoip (database)"
-
-   pkg_install() {
-      vcopy *.db usr/share/sing-box
-   }
-}
-
-sing-geoip-rule-set_package() {
-   short_desc="sing-geoip (rule sets)"
-
-   pkg_install() {
-      vcopy rule-set/* usr/share/sing-geosite/rule-set
-   }
+   for file in rule-set/*; do
+      vinstall $file 644 usr/share/sing-geosite/rule-set
+   done
 }
