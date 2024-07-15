@@ -17,10 +17,12 @@ homepage="https://matsuridayo.github.io"
 changelog="https://github.com/MatsuriDayo/nekoray/releases"
 
 distfiles="https://github.com/MatsuriDayo/nekoray/archive/${version}.tar.gz
- https://github.com/Skycoder42/QHotkey/archive/refs/tags/${_qhotkey_version}.tar.gz"
+ https://github.com/Skycoder42/QHotkey/archive/refs/tags/${_qhotkey_version}.tar.gz
+ https://github.com/MatsuriDayo/qjs/archive/${_qjs_version}.tar.gz"
 
 checksum="21977bc7f8e732b5e171a0f4e099050228815a3ca49582056060bff5023e5a20
- a6d5505a50c52bcc876c8d0bf2bb8a1dcd9f5ea60dacea07d8372137115b7f6d"
+ a6d5505a50c52bcc876c8d0bf2bb8a1dcd9f5ea60dacea07d8372137115b7f6d
+ 1cc5262c624d42644c2c0cce0fae9ea6fd258d37f2ac6a5096ab55f814ea2faa"
 
 . $XBPS_COMMONDIR/environment/build-style/go.sh
 export GOOS=linux
@@ -29,13 +31,13 @@ export GOOS=linux
 post_extract() {
    mv nekoray-*/* .
    mv QHotkey-*/* 3rdparty/QHotkey
-   ls -la
+   mv qjs-*/* 3rdparty/qjs
 }
 
 post_build() {
+   ls -la
    ./libs/get_source.sh
    ./libs/build_go.sh
-   ls -la
 }
 
 do_install() {
