@@ -1,6 +1,9 @@
 # Template file for 'nekoray'
 pkgname=nekoray
 version=3.26
+_qhotkey_version=1.5.0
+_gjs_version=3fb0770c9ee5ab031a56072520641d4577b694e3
+
 revision=1
 build_style=cmake
 archs="aarch64* x86_64*"
@@ -12,31 +15,27 @@ maintainer="hesam-init <hesam.init@gmail.com>"
 license="GPL-3.0-or-later"
 homepage="https://matsuridayo.github.io"
 changelog="https://github.com/MatsuriDayo/nekoray/releases"
-_qho_commit=52e25acf221e5ac86ce648f6922620fb2d6a7121
-_qjs_commit=3fb0770c9ee5ab031a56072520641d4577b694e3
+
 distfiles="https://github.com/MatsuriDayo/nekoray/archive/${version}.tar.gz
- https://github.com/Skycoder42/QHotkey/archive/${_qho_commit}.tar.gz
- https://github.com/MatsuriDayo/qjs/archive/${_qjs_commit}.tar.gz"
+ https://github.com/Skycoder42/QHotkey/archive/refs/tags/${_qhotkey_version}.tar.gz"
+
 checksum="21977bc7f8e732b5e171a0f4e099050228815a3ca49582056060bff5023e5a20
- e1d69ed7b718770be9b58de674ba59362a3227437071cf575f0481d921c414b5
- 1cc5262c624d42644c2c0cce0fae9ea6fd258d37f2ac6a5096ab55f814ea2faa"
+ e8ca5ba77ad04662c18dce8de4b37b373bcb693a7e062fca3d832bf63473b143"
 
 . $XBPS_COMMONDIR/environment/build-style/go.sh
 export GOOS=linux
+# export GOARCH=amd64
 
 post_extract() {
    mv nekoray-*/* .
    mv QHotkey-*/* 3rdparty/QHotkey
-   mv qjs-*/* 3rdparty/qjs
-}
-
-pre_patch() {
    ls -la
 }
 
 post_build() {
    ./libs/get_source.sh
    ./libs/build_go.sh
+   ls -la
 }
 
 do_install() {
