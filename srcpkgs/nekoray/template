@@ -1,7 +1,7 @@
 # Template file for 'nekoray'
 pkgname=nekoray
 version=3.26
-_qhotkey_version=1.5.0
+_qhotkey_version=1.4.2
 _gjs_version=3fb0770c9ee5ab031a56072520641d4577b694e3
 
 revision=1
@@ -20,7 +20,7 @@ distfiles="https://github.com/MatsuriDayo/nekoray/archive/${version}.tar.gz
  https://github.com/Skycoder42/QHotkey/archive/refs/tags/${_qhotkey_version}.tar.gz"
 
 checksum="21977bc7f8e732b5e171a0f4e099050228815a3ca49582056060bff5023e5a20
- e8ca5ba77ad04662c18dce8de4b37b373bcb693a7e062fca3d832bf63473b143"
+ a6d5505a50c52bcc876c8d0bf2bb8a1dcd9f5ea60dacea07d8372137115b7f6d"
 
 . $XBPS_COMMONDIR/environment/build-style/go.sh
 export GOOS=linux
