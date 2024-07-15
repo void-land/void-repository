@@ -16,10 +16,6 @@ skiprdeps="
  /opt/${pkgname}/hiddify
 "
 
-post_extract() {
-    ls -la
-}
-
 do_install() {
     vmkdir usr/bin
     vmkdir opt/${pkgname}
