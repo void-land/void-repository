@@ -2,7 +2,7 @@
 pkgname=nekoray
 version=3.26
 _qhotkey_version=1.4.2
-_gjs_version=3fb0770c9ee5ab031a56072520641d4577b694e3
+_qjs_version=3fb0770c9ee5ab031a56072520641d4577b694e3
 
 revision=1
 build_style=cmake
