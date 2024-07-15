@@ -11,7 +11,7 @@ license="GPL-3.0-or-later, LGPL-3.0-or-later"
 homepage="https://github.com/SagerNet/sing-geosite"
 changelog="https://github.com/SagerNet/sing-geosite/releases"
 distfiles="https://github.com/SagerNet/sing-geosite/archive/refs/tags/${version}.tar.gz"
-checksum=44f065601e89918dd4746f5d18756de1bceea3ea1b309d6a05e6eaeeee476c59
+checksum="2913b0d12304caf96a7a204b53028e95ff37215518876594a83ff829930aa6e3"
 
 post_build() {
    for f in ${GOPATH}/bin/* ${GOPATH}/bin/**/*; do
