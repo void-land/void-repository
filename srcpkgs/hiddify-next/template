@@ -10,7 +10,7 @@ license="GPL-3.0-or-later"
 homepage="https://github.com/hiddify/hiddify-next"
 distfiles="https://github.com/hiddify/hiddify-next/releases/download/v${version}/Hiddify-Debian-x64.deb"
 checksum="25586b9a481fba6d2c38b7a2bc89f71118dcfcc986239e38f66061d876bc789b"
-nopie=yes
+# nopie=yes
 
 post_extract() {
     ls -la
@@ -21,5 +21,5 @@ do_install() {
     vinstall share/icons/hicolor/256x256/apps/hiddify.png 644 usr/share/pixmaps
 
     vbin share/hiddify/hiddify
-    vbin share/hiddify/HiddifyCli
+    # vbin share/hiddify/HiddifyCli
 }
