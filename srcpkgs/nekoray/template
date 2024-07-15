@@ -8,7 +8,7 @@ revision=1
 build_style=cmake
 archs="aarch64* x86_64*"
 configure_args="-DNKR_PACKAGE=ON -DQT_VERSION_MAJOR=5"
-hostmakedepends="git go protobuf qt5-base qt5-tools"
+hostmakedepends="git go protobuf qt5-core qt5-tools"
 makedepends="protobuf-devel qt5-devel qt5-tools-devel qt5-svg-devel yaml-cpp-devel zxing-cpp-devel"
 short_desc="GUI proxy configuration manager (backend: v2ray / sing-box)"
 maintainer="hesam-init <hesam.init@gmail.com>"
