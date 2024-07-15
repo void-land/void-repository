@@ -66,9 +66,13 @@ jobs:
           common/travis/prepare.sh &&
           common/travis/fetch-xtools.sh
 
-      - name: Build SingBox Geoip
+      - name: Build Nekoray
         run: |
-          (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg sing-geosite)
+          (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg nekoray)
+
+      # - name: Build SingBox Geoip
+      #   run: |
+      #     (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg sing-geosite)
 
       # - name: Build Chrome
       #   run: |
