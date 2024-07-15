@@ -12,6 +12,10 @@ distfiles="https://github.com/hiddify/hiddify-next/releases/download/v${version}
 checksum="25586b9a481fba6d2c38b7a2bc89f71118dcfcc986239e38f66061d876bc789b"
 nopie=yes
 
+skiprdeps="./lib/libcore.so
+ /opt/lib/libcore.so
+ /usr/lib/libcore.so"
+
 post_extract() {
     ls -la
 }
