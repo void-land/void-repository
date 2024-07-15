@@ -66,14 +66,18 @@ jobs:
           common/travis/prepare.sh &&
           common/travis/fetch-xtools.sh
 
+      - name: Build SingBox Geoip
+        run: |
+          (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg sing-geosite)
+
       # - name: Build Chrome
       #   run: |
       #     sed -i '/^repository=nonfree/d' /hostrepo/srcpkgs/google-chrome/template
       #     (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg google-chrome)
 
-      - name: Build Hiddify Next
-        run: |
-          (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg hiddify-next)
+      # - name: Build Hiddify Next
+      #   run: |
+      #     (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg hiddify-next)
 
       # - name: Build Swayosd
       #   run: |
