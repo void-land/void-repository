@@ -71,9 +71,13 @@ jobs:
       #     sed -i '/^repository=nonfree/d' /hostrepo/srcpkgs/google-chrome/template
       #     (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg google-chrome)
 
-      - name: Build Swayosd
+      - name: Build Hiddify Next
         run: |
-          (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg swayosd)
+          (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg hiddify-next)
+
+      # - name: Build Swayosd
+      #   run: |
+      #     (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg swayosd)
 
       # - name: Build Fastfetch
       #   run: |

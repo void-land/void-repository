@@ -1,0 +1,21 @@
+# Template file for 'hiddify-next'
+pkgname=hiddify-next
+version=1.5.2
+revision=1
+archs="x86_64"
+depends="xdg-utils"
+short_desc="An open-source multi-platform client for V2ray, Xray, and Sing-box"
+maintainer="hesam-init <hesam.init@gmail.com>"
+license="GPL-3.0-or-later"
+homepage="https://github.com/hiddify/hiddify-next"
+distfiles="https://github.com/hiddify/hiddify-next/releases/download/v${version}/Hiddify-Debian-x64.deb"
+checksum="25586b9a481fba6d2c38b7a2bc89f71118dcfcc986239e38f66061d876bc789b"
+
+post_extract() {
+    ls -la
+}
+
+do_install() {
+    vinstall usr/share/applications/hiddify.desktop 644 usr/share/applications
+    vinstall usr/share/icons/hicolor/256x256/apps/hiddify.png 644 usr/share/pixmaps
+}
