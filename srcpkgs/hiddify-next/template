@@ -25,10 +25,10 @@ do_install() {
 
     vcopy share/hiddify/* opt/${pkgname}
 
-    ln -sf /opt/${pkgname}/hiddify /usr/bin/hiddify
-
-    # vcopy share/hiddify/lib/* usr/lib
-
     vinstall share/applications/hiddify.desktop 644 usr/share/applications
     vinstall share/icons/hicolor/256x256/apps/hiddify.png 644 usr/share/pixmaps
+}
+
+post_install() {
+    ln -sf /opt/${pkgname}/hiddify ${DESTDIR}/usr/bin/hiddify
 }
