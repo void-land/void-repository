@@ -16,6 +16,6 @@ post_extract() {
 }
 
 do_install() {
-    vinstall usr/share/applications/hiddify.desktop 644 usr/share/applications
-    vinstall usr/share/icons/hicolor/256x256/apps/hiddify.png 644 usr/share/pixmaps
+    vinstall share/applications/hiddify.desktop 644 usr/share/applications
+    vinstall share/icons/hicolor/256x256/apps/hiddify.png 644 usr/share/pixmaps
 }
