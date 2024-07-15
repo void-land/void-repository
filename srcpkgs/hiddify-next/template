@@ -17,11 +17,16 @@ post_extract() {
 }
 
 do_install() {
-    vinstall share/applications/hiddify.desktop 644 usr/share/applications
-    vinstall share/icons/hicolor/256x256/apps/hiddify.png 644 usr/share/pixmaps
+    vmkdir opt/${pkgname}
+
+    vcopy share/hiddify/* opt/${pkgname}
 
     vcopy share/hiddify/lib/* usr/lib
 
-    vbin share/hiddify/hiddify
+    vinstall share/applications/hiddify.desktop 644 usr/share/applications
+    vinstall share/icons/hicolor/256x256/apps/hiddify.png 644 usr/share/pixmaps
+
+    ln -sf /opt/${pkgname}/hiddify usr/bin
+
     # vbin share/hiddify/HiddifyCli
 }
