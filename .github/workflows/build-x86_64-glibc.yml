@@ -66,9 +66,14 @@ jobs:
           common/travis/prepare.sh &&
           common/travis/fetch-xtools.sh
 
-      - name: Build Bun
+      - name: Build Chrome
         run: |
-          (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg bun)
+          sed -i '/^repository=nonfree/d' /hostrepo/srcpkgs/google-chrome/template
+          (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg google-chrome)
+
+      # - name: Build Bun
+      #   run: |
+      #     (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg bun)
 
       # - name: Build Dart Sdk
       #   run: |
@@ -85,11 +90,6 @@ jobs:
       # - name: Build Nekoray
       #   run: |
       #     (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg nekoray)
-
-      # - name: Build Chrome
-      #   run: |
-      #     sed -i '/^repository=nonfree/d' /hostrepo/srcpkgs/google-chrome/template
-      #     (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg google-chrome)
 
       # - name: Build Hiddify Next
       #   run: |
@@ -144,6 +144,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Install Git LFS
+        run: |
+          git lfs install
+
       - name: Configure Git
         run: |
           git config user.name "github-actions[bot]"
@@ -165,6 +169,7 @@ jobs:
 
       - name: Commit and Push Changes
         run: |
+          git lfs track "*"
           git add -A
           git commit -m "Upload latest packages to repository"
           git push origin repository-x86_64-glibc
