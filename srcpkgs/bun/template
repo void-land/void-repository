@@ -3,7 +3,7 @@ pkgname=bun
 version=1.1.20
 revision=1
 build_style=cmake
-configure_args="-DCMAKE_BUILD_TYPE=Release -DWEBKIT_DIR=$(pwd)/src/bun.js/WebKit/WebKitBuild/Release -GNinja -Bbuild-release-local"
+configure_args="-DZIG_OPTIMIZE=Debug -DUSE_DEBUG_JSC=ON -DBUN_TIDY_ONLY=ON -DCMAKE_BUILD_TYPE=Debug -GNinja -Bbuild-tidy"
 archs="aarch64 x86_64"
 hostmakedepends="ninja pkg-config git wget"
 makedepends="base-devel llvm17 llvm17-devel cmake ccache automake coreutils libtool pkg-config nodejs xz"
@@ -17,8 +17,6 @@ distfiles="https://github.com/oven-sh/bun/archive/refs/tags/bun-v${version}.tar.
 checksum=9728809be5adaa92eccb4b19493a50788f5f672f57067be9e81a4a12cf3d535a
 
 do_patch() {
-	ls -la
-
 	sed -i 's/set(LLVM_VERSION 16)/set(LLVM_VERSION 17)/' CMakeLists.txt
 
 	cat CMakeLists.txt
