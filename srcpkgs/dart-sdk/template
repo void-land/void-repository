@@ -46,15 +46,15 @@ do_build() {
 	./tools/build.py --mode release --arch x64 create_sdk
 }
 
-# do_install() {
-# 	vmkdir usr/lib/${pkgname}
-# 	vinstall -m 755 out/ReleaseX64/dart-sdk/* usr/lib/${pkgname}
+do_install() {
+	vmkdir usr/lib/${pkgname}
+	vinstall -m 755 out/ReleaseX64/dart-sdk/* usr/lib/${pkgname}
 
-# 	vmkdir usr/bin
-# 	for bin in dart dartaotruntime dartdev dartdoc dartfmt pub; do
-# 		vinstall -m 755 out/ReleaseX64/dart-sdk/bin/$bin usr/bin
-# 	done
-# }
+	vmkdir usr/bin
+	for bin in dart dartaotruntime dartdev dartdoc dartfmt pub; do
+		vinstall -m 755 out/ReleaseX64/dart-sdk/bin/$bin usr/bin
+	done
+}
 
 # do_check() {
 # 	./tools/test.py -m release -c dart2js -r vm
