@@ -14,22 +14,22 @@ distfiles="https://github.com/SagerNet/sing-geosite/archive/refs/tags/${version}
 checksum="2913b0d12304caf96a7a204b53028e95ff37215518876594a83ff829930aa6e3"
 
 post_build() {
-   for f in ${GOPATH}/bin/* ${GOPATH}/bin/**/*; do
-      if [ -f "$f" ] && [ -x "$f" ]; then
-         NO_SKIP=true vtargetrun "$f"
-      fi
-   done
+	for f in ${GOPATH}/bin/* ${GOPATH}/bin/**/*; do
+		if [ -f "$f" ] && [ -x "$f" ]; then
+			NO_SKIP=true vtargetrun "$f"
+		fi
+	done
 }
 
 do_install() {
-   vmkdir usr/share/${pkgname}
-   vmkdir usr/share/${pkgname}/rule-set
+	vmkdir usr/share/${pkgname}
+	vmkdir usr/share/${pkgname}/rule-set
 
-   for file in *.db; do
-      vinstall $file 644 usr/share/${pkgname}
-   done
+	for file in *.db; do
+		vinstall $file 644 usr/share/${pkgname}
+	done
 
-   for file in rule-set/*; do
-      vinstall $file 644 usr/share/${pkgname}/rule-set
-   done
+	for file in rule-set/*; do
+		vinstall $file 644 usr/share/${pkgname}/rule-set
+	done
 }
