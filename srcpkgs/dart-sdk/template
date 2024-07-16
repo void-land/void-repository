@@ -17,9 +17,11 @@ checksum="e52ff74f2e196fa10aa1aff2b09a1560a13372867e4d90bae669a11b2c44da3b"
 pre_build() {
 	git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git --depth 1
 
-	export PATH="$PATH:$wrksrc/depot_tools"
+	export PATH="$PATH:$PWD/depot_tools"
 
-	ls -la
+	gclient config https://dart.googlesource.com/sdk.git
+
+	gclient sync
 }
 
 do_build() {
