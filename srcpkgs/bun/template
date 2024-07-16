@@ -2,11 +2,9 @@
 pkgname=bun
 version=1.1.20
 revision=1
-build_style=cmake
-configure_args="-DCMAKE_BUILD_TYPE=Release -GNinja -Bbuild-release"
 archs="aarch64 x86_64"
-hostmakedepends="ninja pkg-config git"
-makedepends="base-devel llvm17 llvm17-devel nodejs cmake ccache automake coreutils libtool pkg-config xz"
+hostmakedepends="git"
+makedepends="base-devel llvm17 llvm17-devel ninja nodejs cmake ccache automake coreutils libtool pkg-config xz"
 hostmakedepends=""
 short_desc="JavaScript runtime, bundler, transpiler, and package manager"
 maintainer="hesam-init <hesam.init@gmail.com>"
@@ -26,6 +24,10 @@ do_patch() {
 	sed -i 's/set(LLVM_VERSION 16)/set(LLVM_VERSION 17)/' CMakeLists.txt
 
 	npm install -g bun
+}
+
+do_build() {
+	cmake . -DCMAKE_BUILD_TYPE=Release -GNinja -Bbuild-release
 }
 
 post_build() {
