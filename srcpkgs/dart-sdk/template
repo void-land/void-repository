@@ -4,7 +4,7 @@ version=3.6.0
 build_number=45.0
 revision=1
 # build_style=meson
-hostmakedepends="clang python3 ninja pkg-config"
+hostmakedepends="clang python3 ninja pkg-config git"
 makedepends="llvm clang libxml2 libevent"
 short_desc="Dart SDK - An open-source general-purpose programming language"
 maintainer="hesam-init <hesam.init@gmail.com>"
@@ -13,6 +13,12 @@ homepage="https://dart.dev/"
 changelog="https://github.com/dart-lang/sdk/releases"
 distfiles="https://github.com/dart-lang/sdk/archive/refs/tags/${version}-${build_number}.dev.tar.gz"
 checksum="e52ff74f2e196fa10aa1aff2b09a1560a13372867e4d90bae669a11b2c44da3b"
+
+pre_build() {
+	git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git --depth 1
+
+	export PATH="$PATH:$PWD/depot_tools"
+}
 
 do_build() {
 	./tools/build.py --mode release --arch x64 create_sdk
