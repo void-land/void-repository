@@ -66,13 +66,17 @@ jobs:
           common/travis/prepare.sh &&
           common/travis/fetch-xtools.sh
 
-      - name: Build SingBox Geosite
+      - name: Build Dart Sdk
         run: |
-          (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg sing-geosite)
+          (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg dart-sdk)
 
-      - name: Build SingBox Geoip
-        run: |
-          (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg sing-geoip)
+      # - name: Build SingBox Geosite
+      #   run: |
+      #     (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg sing-geosite)
+
+      # - name: Build SingBox Geoip
+      #   run: |
+      #     (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg sing-geoip)
 
       # - name: Build Nekoray
       #   run: |
