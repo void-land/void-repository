@@ -14,15 +14,11 @@ changelog="https://github.com/dart-lang/sdk/releases"
 distfiles="https://github.com/dart-lang/sdk/archive/refs/tags/${version}-${build_number}.dev.tar.gz"
 checksum="e52ff74f2e196fa10aa1aff2b09a1560a13372867e4d90bae669a11b2c44da3b"
 
-# do_configure() {
-# 	cat <<EOF >>~/.gitconfig
-# [url "sso://dart/"]
-#     insteadOf = https://dart.googlesource.com/
-#     insteadOf = https://dart-review.googlesource.com/
-#     insteadOf = http://dart.googlesource.com/
-#     insteadOf = http://dart-review.googlesource.com/
-# EOF
-# }
+do_configure() {
+	GIT_CURL_VERBOSE=1 GIT_TRANSFER_TRACE=1 GIT_TRACE=1 git -c core.deltaBaseCacheLimit=2g clone --no-checkout --progress https://dart.googlesource.com/sdk.git --depth 1
+
+	ls -la sdk
+}
 
 pre_build() {
 	git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git --depth 1
@@ -33,9 +29,9 @@ pre_build() {
 
 	# gclient config https://dart.googlesource.com/sdk.git
 
-	gclient sync
+	# gclient sync
 
-	fetch dart
+	# fetch dart
 }
 
 do_build() {
