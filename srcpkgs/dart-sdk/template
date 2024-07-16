@@ -19,6 +19,8 @@ pre_build() {
 
 	export PATH="$PATH:$PWD/depot_tools"
 
+	cp -R depot_tools buildtools
+
 	gclient config https://dart.googlesource.com/sdk.git
 
 	gclient sync
