@@ -16,14 +16,6 @@ checksum="e52ff74f2e196fa10aa1aff2b09a1560a13372867e4d90bae669a11b2c44da3b"
 
 post_extract() {
 	ls -la
-
-	cat <<EOF >>~/.gitconfig
-[url "sso://dart/"]
-    insteadOf = https://dart.googlesource.com/
-    insteadOf = https://dart-review.googlesource.com/
-    insteadOf = http://dart.googlesource.com/
-    insteadOf = http://dart-review.googlesource.com/
-EOF
 }
 
 do_configure() {
@@ -33,20 +25,10 @@ do_configure() {
 
 	export PATH="$PATH:$PWD/depot_tools"
 
-	mkdir dart-sdk
-
-	cd dart-sdk
-
-	fetch dart
-
-	ls -la
+	cp -R depot_tools buildtools
 }
 
 do_build() {
-	cd sdk
-
-	ls -la
-
 	./tools/build.py --mode release --arch x64 create_sdk
 }
 
