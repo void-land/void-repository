@@ -18,28 +18,22 @@ post_extract() {
 	ls -la
 }
 
-# do_configure() {
-# 	GIT_CURL_VERBOSE=1 GIT_TRANSFER_TRACE=1 GIT_TRACE=1 git -c core.deltaBaseCacheLimit=2g clone --no-checkout --progress https://dart.googlesource.com/sdk.git sdk-chad
+do_configure() {
+	# GIT_CURL_VERBOSE=1 GIT_TRANSFER_TRACE=1 GIT_TRACE=1 git -c core.deltaBaseCacheLimit=2g clone --no-checkout --progress https://dart.googlesource.com/sdk.git sdk-chad
 
-# 	ls -la sdk-chad
-# }
-
-pre_build() {
 	git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git --depth 1
 
 	export PATH="$PATH:$PWD/depot_tools"
 
-	cp -R depot_tools buildtools
+	mkdir dart-sdk
 
-	gclient config https://dart.googlesource.com/sdk.git
-
-	gclient sync
+	cd dart-sdk
 
 	fetch dart
 }
 
 do_build() {
-	ls -la
+	cd sdk
 
 	./tools/build.py --mode release --arch x64 create_sdk
 }
