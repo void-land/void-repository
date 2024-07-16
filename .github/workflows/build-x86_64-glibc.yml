@@ -169,7 +169,7 @@ jobs:
 
       - name: Commit and Push Changes
         run: |
-          git lfs track "*"
+          git lfs track "*.xbps"
           git add -A
           git commit -m "Upload latest packages to repository"
           git push origin repository-x86_64-glibc
