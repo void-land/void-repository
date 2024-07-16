@@ -19,8 +19,6 @@ distfiles="https://github.com/oven-sh/bun/archive/refs/tags/bun-v${version}.tar.
 checksum="9728809be5adaa92eccb4b19493a50788f5f672f57067be9e81a4a12cf3d535a
  6cb70ad0349a2cecc94ab2113cd1d07a5779aae77c71cab1cf20c881ac0c0775"
 
-mkdir -p /usr/bin
-
 post_extract() {
 	mv bun-linux-x64/bun /usr/bin
 
