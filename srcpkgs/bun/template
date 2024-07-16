@@ -4,7 +4,7 @@ version=1.1.20
 revision=1
 archs="aarch64 x86_64"
 hostmakedepends="git"
-makedepends="base-devel llvm17 llvm17-devel ninja nodejs cmake ccache automake coreutils libtool pkg-config xz"
+makedepends="base-devel llvm17 llvm17-devel ninja nodejs ruby cmake ccache automake coreutils libtool pkg-config xz"
 hostmakedepends=""
 short_desc="JavaScript runtime, bundler, transpiler, and package manager"
 maintainer="hesam-init <hesam.init@gmail.com>"
@@ -25,7 +25,15 @@ do_patch() {
 
 	git clone https://github.com/oven-sh/bun.git --depth 1 bun-helper
 
-	exec bun-helper/scripts/all-dependencies.sh
+	cd bun-helper
+
+	git submodule update --init --recursive --progress --depth=1 --checkout $(cat .gitmodules | grep 'path = ' | awk '{print $3}')
+
+	cd scripts
+}
+
+do_configure() {
+	make runtime_js fallback_decoder bun_error node-fallbacks
 }
 
 do_build() {
