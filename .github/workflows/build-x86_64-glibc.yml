@@ -66,10 +66,14 @@ jobs:
           common/travis/prepare.sh &&
           common/travis/fetch-xtools.sh
 
-      - name: Build Chrome
+      - name: Build Zed
         run: |
-          sed -i '/^repository=nonfree/d' /hostrepo/srcpkgs/google-chrome/template
-          (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg google-chrome)
+          (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg zed)
+
+      # - name: Build Chrome
+      #   run: |
+      #     sed -i '/^repository=nonfree/d' /hostrepo/srcpkgs/google-chrome/template
+      #     (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg google-chrome)
 
       # - name: Build Bun
       #   run: |
