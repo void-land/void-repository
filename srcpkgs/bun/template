@@ -19,11 +19,13 @@ checksum="9728809be5adaa92eccb4b19493a50788f5f672f57067be9e81a4a12cf3d535a"
 # }
 
 do_patch() {
-	ls -la
+	npm install -g bun
 
 	sed -i 's/set(LLVM_VERSION 16)/set(LLVM_VERSION 17)/' CMakeLists.txt
 
-	npm install -g bun
+	git clone https://github.com/oven-sh/bun.git --depth 1 bun-helper
+
+	exec bun-helper/scripts/all-dependencies.sh
 }
 
 do_build() {
