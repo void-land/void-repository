@@ -14,13 +14,19 @@ changelog="https://github.com/dart-lang/sdk/releases"
 distfiles="https://github.com/dart-lang/sdk/archive/refs/tags/${version}-${build_number}.dev.tar.gz"
 checksum="e52ff74f2e196fa10aa1aff2b09a1560a13372867e4d90bae669a11b2c44da3b"
 
-do_configure() {
-	GIT_CURL_VERBOSE=1 GIT_TRANSFER_TRACE=1 GIT_TRACE=1 git -c core.deltaBaseCacheLimit=2g clone --no-checkout --progress https://dart.googlesource.com/sdk.git --depth 1
+post_extract() {
+	ls -la
+}
 
-	ls -la sdk
+do_configure() {
+	GIT_CURL_VERBOSE=1 GIT_TRANSFER_TRACE=1 GIT_TRACE=1 git -c core.deltaBaseCacheLimit=2g clone --no-checkout --progress https://dart.googlesource.com/sdk.git sdk-chad
+
+	ls -la sdk-chad
 }
 
 pre_build() {
+	ls -la
+
 	git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git --depth 1
 
 	export PATH="$PATH:$PWD/depot_tools"
@@ -35,18 +41,20 @@ pre_build() {
 }
 
 do_build() {
+	ls -la
+
 	./tools/build.py --mode release --arch x64 create_sdk
 }
 
-do_install() {
-	vmkdir usr/lib/${pkgname}
-	vinstall -m 755 out/ReleaseX64/dart-sdk/* usr/lib/${pkgname}
+# do_install() {
+# 	vmkdir usr/lib/${pkgname}
+# 	vinstall -m 755 out/ReleaseX64/dart-sdk/* usr/lib/${pkgname}
 
-	vmkdir usr/bin
-	for bin in dart dartaotruntime dartdev dartdoc dartfmt pub; do
-		vinstall -m 755 out/ReleaseX64/dart-sdk/bin/$bin usr/bin
-	done
-}
+# 	vmkdir usr/bin
+# 	for bin in dart dartaotruntime dartdev dartdoc dartfmt pub; do
+# 		vinstall -m 755 out/ReleaseX64/dart-sdk/bin/$bin usr/bin
+# 	done
+# }
 
 # do_check() {
 # 	./tools/test.py -m release -c dart2js -r vm
