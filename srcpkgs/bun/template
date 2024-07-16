@@ -6,8 +6,8 @@ revision=1
 build_style=cmake
 configure_args="-DCMAKE_BUILD_TYPE=Release -GNinja -Bbuild-release"
 archs="aarch64 x86_64"
-hostmakedepends="ninja pkg-config git wget"
-makedepends="base-devel llvm17 llvm17-devel cmake ccache automake coreutils libtool pkg-config nodejs xz"
+hostmakedepends="ninja pkg-config git wget nodejs"
+makedepends="base-devel llvm17 llvm17-devel cmake ccache automake coreutils libtool pkg-config xz"
 hostmakedepends=""
 short_desc="JavaScript runtime, bundler, transpiler, and package manager"
 maintainer="hesam-init <hesam.init@gmail.com>"
@@ -19,12 +19,12 @@ distfiles="https://github.com/oven-sh/bun/archive/refs/tags/bun-v${version}.tar.
 checksum="9728809be5adaa92eccb4b19493a50788f5f672f57067be9e81a4a12cf3d535a
  6cb70ad0349a2cecc94ab2113cd1d07a5779aae77c71cab1cf20c881ac0c0775"
 
-post_extract() {
-	ls -la
+# post_extract() {
+# 	ls -la
 
-	mkdir $HOME/.bun/bin
-	mv bun $HOME/.bun/bin
-}
+# 	mkdir $HOME/.bun/bin
+# 	mv bun $HOME/.bun/bin
+# }
 
 do_patch() {
 	ls -la
@@ -32,6 +32,10 @@ do_patch() {
 	sed -i 's/set(LLVM_VERSION 16)/set(LLVM_VERSION 17)/' CMakeLists.txt
 
 	# cat CMakeLists.txt
+}
+
+do_configure() {
+	npm install -g bun
 }
 
 post_build() {
