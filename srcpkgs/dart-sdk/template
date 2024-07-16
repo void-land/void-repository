@@ -1,6 +1,7 @@
 # Template file for 'dart-sdk'
 pkgname=dart-sdk
-version=3.6.0-45.0
+version=3.6.0
+build_number=45.0
 revision=1
 # build_style=meson
 hostmakedepends="clang python3 ninja pkg-config"
@@ -10,7 +11,7 @@ maintainer="hesam-init <hesam.init@gmail.com>"
 license="BSD-3-Clause"
 homepage="https://dart.dev/"
 changelog="https://github.com/dart-lang/sdk/releases"
-distfiles="https://github.com/dart-lang/sdk/archive/refs/tags/${version}.dev.tar.gz"
+distfiles="https://github.com/dart-lang/sdk/archive/refs/tags/${version}-${build_number}.dev.tar.gz"
 checksum="e52ff74f2e196fa10aa1aff2b09a1560a13372867e4d90bae669a11b2c44da3b"
 
 do_build() {
