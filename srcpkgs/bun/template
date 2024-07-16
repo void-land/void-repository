@@ -1,7 +1,6 @@
 # Template file for 'bun'
 pkgname=bun
 version=1.1.20
-_bun_version=1.1.20
 revision=1
 build_style=cmake
 configure_args="-DCMAKE_BUILD_TYPE=Release -GNinja -Bbuild-release"
@@ -14,28 +13,19 @@ maintainer="hesam-init <hesam.init@gmail.com>"
 license="MIT"
 homepage="https://bun.sh"
 changelog="https://bun.sh/blog"
-distfiles="https://github.com/oven-sh/bun/archive/refs/tags/bun-v${version}.tar.gz
- https://github.com/oven-sh/bun/releases/download/bun-v${_bun_version}/bun-linux-x64.zip"
-checksum="9728809be5adaa92eccb4b19493a50788f5f672f57067be9e81a4a12cf3d535a
- 6cb70ad0349a2cecc94ab2113cd1d07a5779aae77c71cab1cf20c881ac0c0775"
+distfiles="https://github.com/oven-sh/bun/archive/refs/tags/bun-v${version}.tar.gz"
+checksum="9728809be5adaa92eccb4b19493a50788f5f672f57067be9e81a4a12cf3d535a"
 
-post_extract() {
-	mv bun-linux-x64/bun /usr/bin
-
-	cd bun-bun-v1.1.20
-}
+# post_extract() {
+# 	mv bun-linux-x64/bun /usr/bin
+# }
 
 do_patch() {
 	ls -la
 
 	sed -i 's/set(LLVM_VERSION 16)/set(LLVM_VERSION 17)/' CMakeLists.txt
 
-	# cat CMakeLists.txt
-}
-
-do_configure() {
-	# npm install -g bun
-	ls -la
+	npm install -g bun
 }
 
 post_build() {
