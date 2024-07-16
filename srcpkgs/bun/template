@@ -5,8 +5,8 @@ revision=1
 build_style=cmake
 configure_args="-DCMAKE_BUILD_TYPE=Release -GNinja -Bbuild-release"
 archs="aarch64 x86_64"
-hostmakedepends="ninja pkg-config git wget nodejs"
-makedepends="base-devel llvm17 llvm17-devel cmake ccache automake coreutils libtool pkg-config xz"
+hostmakedepends="ninja pkg-config git"
+makedepends="base-devel llvm17 llvm17-devel nodejs cmake ccache automake coreutils libtool pkg-config xz"
 hostmakedepends=""
 short_desc="JavaScript runtime, bundler, transpiler, and package manager"
 maintainer="hesam-init <hesam.init@gmail.com>"
