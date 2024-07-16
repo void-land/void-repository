@@ -30,10 +30,14 @@ do_configure() {
 	cd dart-sdk
 
 	fetch dart
+
+	ls -la
 }
 
 do_build() {
 	cd sdk
+
+	ls -la
 
 	./tools/build.py --mode release --arch x64 create_sdk
 }
