@@ -35,6 +35,7 @@ do_patch() {
 
 do_configure() {
 	# npm install -g bun
+	ls -la
 }
 
 post_build() {
