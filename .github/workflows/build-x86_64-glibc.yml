@@ -66,9 +66,13 @@ jobs:
           common/travis/prepare.sh &&
           common/travis/fetch-xtools.sh
 
-      - name: Build Dart Sdk
+      - name: Build Bun
         run: |
-          (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg dart-sdk)
+          (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg bun)
+
+      # - name: Build Dart Sdk
+      #   run: |
+      #     (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg dart-sdk)
 
       # - name: Build SingBox Geosite
       #   run: |

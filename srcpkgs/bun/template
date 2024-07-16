@@ -1,31 +1,27 @@
 # Template file for 'bun'
 pkgname=bun
-version=0.5.9
+version=1.1.20
 revision=1
+build_style=cmake
+configure_args="-DCMAKE_BUILD_TYPE=Release -GNinja -Bbuild-release"
 archs="aarch64 x86_64"
-hostmakedepends="git which llvm15 cmake ccache automake coreutils go libtool wget pkg-config nodejs xz"
+hostmakedepends="git base-devel llvm17 cmake ccache automake coreutils libtool wget pkg-config nodejs xz"
 short_desc="JavaScript runtime, bundler, transpiler, and package manager"
-maintainer="Bnyro <bnyro@tutanota.com>"
+maintainer="hesam-init <hesam.init@gmail.com>"
 license="MIT"
 homepage="https://bun.sh"
 changelog="https://bun.sh/blog"
-distfiles="https://github.com/oven-sh/bun/archive/refs/tags/${pkgname}-v${version}.tar.gz"
-checksum=61751480269b6794a18262f974870dee17703b0935436ca2f23ea489ff8d4d74
+distfiles="https://github.com/oven-sh/bun/archive/refs/tags/bun-v${version}.tar.gz"
+checksum=9728809be5adaa92eccb4b19493a50788f5f672f57067be9e81a4a12cf3d535a
 
 pre_build() {
-	npm install -g esbuild
-	_zig_version=$(cat Dockerfile | grep "ZIG_VERSION" | head -n 1 | cut -d "=" -f 2 | tr -d \")
-	wget -O zig.tar.xz https://ziglang.org/builds/zig-${_zig_version}.tar.xz
-	tar xvf zig.tar.xz
-	export ZIG=$(pwd)/zig-${_zig_version}
+	sed -i 's/set(LLVM_VERSION 16)/set(LLVM_VERSION 17)/' CMakeLists.txt
 }
 
-do_build() {
-	make devcontainer
-	make release-bindings -j12
-	make release
+post_build() {
+	ninja -Cbuild-release
 }
 
 do_install() {
-	vbin packages/bun-linux-${XBPS_TARGET_ARCH}/bun
+	ls -la
 }
