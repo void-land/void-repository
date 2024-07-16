@@ -1,6 +1,6 @@
 # Template file for 'zed'
 pkgname=zed
-version=0.143.7
+version=0.143.6
 revision=1
 archs="x86_64* aarch64*"
 build_style=cargo
@@ -11,7 +11,7 @@ libzstd-devel wayland-devel vulkan-loader openssl-devel libgit2-devel llvm17-dev
 depends="git"
 checkdepends="noto-fonts-ttf"
 short_desc="High-performance, multiplayer code editor"
-maintainer="SpidFightFR <spidfight@swisscows.email>"
+maintainer="hesam-init <hesam.init@gmail.com>"
 license="GPL-3.0-or-later, Apache-2.0, AGPL-3.0-or-later"
 homepage="https://zed.dev/"
 distfiles="https://github.com/zed-industries/zed/archive/v${version}.tar.gz"
