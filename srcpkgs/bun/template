@@ -3,9 +3,11 @@ pkgname=bun
 version=1.1.20
 revision=1
 build_style=cmake
-configure_args="-DCMAKE_BUILD_TYPE=Release -GNinja -Bbuild-release"
+configure_args="-DCMAKE_BUILD_TYPE=Release -DWEBKIT_DIR=$(pwd)/src/bun.js/WebKit/WebKitBuild/Release -GNinja -Bbuild-release-local"
 archs="aarch64 x86_64"
-hostmakedepends="git base-devel llvm17 llvm17-devel cmake ccache automake coreutils libtool wget pkg-config nodejs xz"
+hostmakedepends="ninja pkg-config git wget"
+makedepends="base-devel llvm17 llvm17-devel cmake ccache automake coreutils libtool pkg-config nodejs xz"
+hostmakedepends=""
 short_desc="JavaScript runtime, bundler, transpiler, and package manager"
 maintainer="hesam-init <hesam.init@gmail.com>"
 license="MIT"
