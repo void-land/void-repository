@@ -25,3 +25,7 @@ pre_build() {
 do_build() {
 	cmake --build ${wrksrc}/build --config Release --parallel
 }
+
+do_install() {
+	ls -la ${wrksrc}/build
+}
