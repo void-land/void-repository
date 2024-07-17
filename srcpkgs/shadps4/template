@@ -3,10 +3,10 @@ version=0.1.0
 revision=1
 archs="x86_64"
 hostmakedepends="git pkg-config"
-makedepends="base-devel gcc make binutils alsa-lib-devel pulseaudio-devel libopenal-devel zlib-devel libedit-devel Vulkan-Headers vulkan-loader-devel eudev-libudev-devel libevdev-devel SDL2 SDL2-devel jack-devel sndio-devel"
+makedepends="base-devel cmake gcc make binutils alsa-lib-devel pulseaudio-devel libopenal-devel zlib-devel libedit-devel Vulkan-Headers vulkan-loader-devel eudev-libudev-devel libevdev-devel SDL2 SDL2-devel jack-devel sndio-devel"
 short_desc="PS4 Emulator"
 license="GPL-3.0-only"
-homepage="https://github.com/shadps4-emu/shadPS4"
+homepage="https://github.com/shadps4-emu/shadPS4.git"
 maintainer="hesam-init <hesam.init@gmail.com>"
 git_commit=""
 
