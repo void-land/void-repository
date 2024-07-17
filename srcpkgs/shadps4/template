@@ -23,5 +23,12 @@ do_build() {
 }
 
 do_install() {
-	ls -la
+	vbin build/${pkgname}
+
+	vmkdir usr/share/pixmaps
+	vcopy .github/shadps4.png usr/share/pixmaps
+}
+
+post_install() {
+	vinstall ${FILESDIR}/shadps4.desktop 644 usr/share/applications
 }
