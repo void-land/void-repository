@@ -6,12 +6,12 @@ hostmakedepends="git pkg-config"
 makedepends="base-devel gcc make binutils alsa-lib-devel pulseaudio-devel libopenal-devel zlib-devel libedit-devel Vulkan-Headers vulkan-loader-devel eudev-libudev-devel libevdev-devel SDL2 SDL2-devel jack-devel sndio-devel"
 short_desc="PS4 Emulator"
 license="GPL-3.0-only"
-homepage="https://github.com/void-land/shadps4.git"
+homepage="https://github.com/shadps4-emu/shadPS4"
 maintainer="hesam-init <hesam.init@gmail.com>"
 git_commit=""
 
 do_fetch() {
-	git clone --recursive --depth 1 https://github.com/void-land/shadps4.git $wrksrc
+	git clone --recursive --depth 1 ${homepage} ${wrksrc}
 
 	ls -la
 }
@@ -19,13 +19,13 @@ do_fetch() {
 pre_build() {
 	ls -la
 
-	cmake -B $wrksrc/build -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DENABLE_QT_GUI=ON
+	cmake -B ${wrksrc}/build -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DENABLE_QT_GUI=ON
 }
 
 do_build() {
-	cmake --build $wrksrc/build --config Release --parallel
+	cmake --build ${wrksrc}/build --config Release --parallel
 }
 
 do_install() {
-	ls -la $wrksrc/build
+	ls -la
 }
