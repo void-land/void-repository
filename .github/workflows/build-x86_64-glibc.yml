@@ -66,9 +66,13 @@ jobs:
           common/travis/prepare.sh &&
           common/travis/fetch-xtools.sh
 
-      - name: Build Zed
+      - name: Build Shadps4
         run: |
-          (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg zed)
+          (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg shadps4)
+
+      # - name: Build Zed
+      #   run: |
+      #     (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg zed)
 
       # - name: Build Chrome
       #   run: |
@@ -173,7 +177,6 @@ jobs:
 
       - name: Commit and Push Changes
         run: |
-          git lfs track "*.xbps"
           git add -A
           git commit -m "Upload latest packages to repository"
           git push origin repository-x86_64-glibc
