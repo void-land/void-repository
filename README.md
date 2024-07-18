@@ -10,7 +10,7 @@ Adding the Repository
 To add this repository to your Void Linux system, create a new file (e.g., `/etc/xbps.d/void-repository.conf`) with the following content:
 
 ```
-repository=https://raw.githubusercontent.com/void-land/void-repository/repository-x86_64-glibc
+echo 'repository=https://raw.githubusercontent.com/void-land/void-repository/repository-x86_64-glibc' | sudo tee /etc/xbps.d/void-repository.conf
 ```
 
 Replace `repository-x86_64-glibc` with the appropriate branch name for your desired architecture (e.g., `repository-x86_64-musl` for the musl libc variant).

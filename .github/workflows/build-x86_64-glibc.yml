@@ -66,9 +66,13 @@ jobs:
           common/travis/prepare.sh &&
           common/travis/fetch-xtools.sh
 
-      - name: Build Shadps4
+      - name: Build Rofi wayland
         run: |
-          (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg shadps4)
+          (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg rofi-wayland)
+
+      # - name: Build Shadps4
+      #   run: |
+      #     (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg shadps4)
 
       # - name: Build Zed
       #   run: |
@@ -87,21 +91,21 @@ jobs:
       #   run: |
       #     (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg dart-sdk)
 
-      # - name: Build SingBox Geosite
-      #   run: |
-      #     (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg sing-geosite)
+      - name: Build SingBox Geosite
+        run: |
+          (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg sing-geosite)
 
-      # - name: Build SingBox Geoip
-      #   run: |
-      #     (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg sing-geoip)
+      - name: Build SingBox Geoip
+        run: |
+          (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg sing-geoip)
 
-      # - name: Build Nekoray
-      #   run: |
-      #     (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg nekoray)
+      - name: Build Nekoray
+        run: |
+          (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg nekoray)
 
-      # - name: Build Hiddify Next
-      #   run: |
-      #     (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg hiddify-next)
+      - name: Build Hiddify Next
+        run: |
+          (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg hiddify-next)
 
       # - name: Build Swayosd
       #   run: |
