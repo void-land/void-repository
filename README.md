@@ -16,10 +16,10 @@ echo 'repository=https://raw.githubusercontent.com/void-land/void-repository/rep
 Replace `repository-x86_64-glibc` with the appropriate branch name for your desired architecture (e.g., `repository-x86_64-musl` for the musl libc variant).
 
 Installing Packages
-Once you've added the repository, you can install packages like any other package on Void Linux:
+Once you've added the repository, you have to sync the repo :
 
 ```
-sudo xbps-install -S google-chrome
+sudo xbps-install -S
 ```
 
 You can also search for available packages using `xbps-query`:
