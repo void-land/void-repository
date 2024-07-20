@@ -13,9 +13,8 @@ homepage="https://github.com/Aylur/ags"
 distfiles="https://github.com/Aylur/ags/releases/download/v${version}/ags-v${version}.tar.gz"
 checksum="ea0a706bef99578b30d40a2d0474b7a251364bfcf3a18cdc9b1adbc04af54773"
 
-pre_build() {
+pre_configure() {
 	npm install -g typescript bun sass
-
 	npm install
 }
 
