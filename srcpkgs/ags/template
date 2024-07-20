@@ -1,0 +1,30 @@
+# Template file for 'aylurs-gtk-shell'
+pkgname=aylurs-gtk-shell
+version=1.8.2
+revision=1
+archs="x86_64"
+hostmakedepends="meson node"
+makedepends="gobject-introspection gjs-devel glib-devel gtk+3-devel gtk-layer-shell-devel pulseaudio-devel pam-devel"
+depends="gjs glib gtk+3 gtk-layer-shell libpulseaudio pam"
+short_desc="Aylurs's Gtk Shell (AGS), An eww inspired gtk widget system."
+maintainer="hesam-init <hesam.init@gmail.com>"
+license="GPL-3.0-or-later"
+homepage="https://github.com/Aylur/ags"
+distfiles="https://github.com/Aylur/ags/releases/download/v${version}/ags-v${version}.tar.gz"
+checksum="ea0a706bef99578b30d40a2d0474b7a251364bfcf3a18cdc9b1adbc04af54773"
+
+pre_build() {
+	npm install -g typescript bun sass
+
+	npm install
+}
+
+do_build() {
+	meson setup build
+}
+
+do_install() {
+	meson install -C build --destdir "$pkgdir"
+
+	ln -sf /usr/share/com.github.Aylur.ags/com.github.Aylur.ags ${DESTDIR}/usr/bin/ags
+}
