@@ -2,8 +2,8 @@
 pkgname="aylurs-gtk-shell"
 version="1.8.2"
 revision=1
-archs="x86_64"
-hostmakedepends="meson cmake nodejs-lts pkg-config"
+build_style=meson
+hostmakedepends="cmake nodejs-lts pkg-config"
 makedepends="gobject-introspection gjs-devel glib-devel gtk+3-devel gtk-layer-shell-devel pulseaudio-devel pam-devel"
 depends="gjs glib gtk+3 gtk-layer-shell libpulseaudio pam"
 short_desc="Aylurs's Gtk Shell (AGS), An eww inspired gtk widget system."
@@ -19,12 +19,7 @@ pre_build() {
 	npm install
 }
 
-do_build() {
-	meson setup build
-}
-
-do_install() {
-	meson install -C build
-
-	# ln -sf /usr/share/com.github.Aylur.ags/com.github.Aylur.ags ${DESTDIR}/usr/bin/ags
+post_install() {
+	ls -la
+	ln -sf /usr/share/com.github.Aylur.ags/com.github.Aylur.ags ${DESTDIR}/usr/bin/ags
 }
