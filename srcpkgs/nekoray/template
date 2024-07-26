@@ -30,28 +30,28 @@ export GOOS=linux
 # export GOARCH=amd64
 
 post_extract() {
-   mv nekoray-*/* .
-   mv QHotkey-*/* 3rdparty/QHotkey
-   mv qjs-*/* 3rdparty/qjs
+	mv nekoray-*/* .
+	mv QHotkey-*/* 3rdparty/QHotkey
+	mv qjs-*/* 3rdparty/qjs
 }
 
 post_build() {
-   ls -la
-   ./libs/get_source.sh
-   ./libs/build_go.sh
+	ls -la
+	./libs/get_source.sh
+	./libs/build_go.sh
 }
 
 do_install() {
-   vinstall build/nekoray 755 usr/lib/nekoray
-   vcopy deployment/linux*/neko* usr/lib/nekoray
+	vinstall build/nekoray 755 usr/lib/nekoray
+	vcopy deployment/linux*/neko* usr/lib/nekoray
 
-   vmkdir usr/share/pixmaps
-   vcopy res/public/neko* usr/share/pixmaps
-
-   vmkdir usr/bin
-   ln -s /usr/lib/nekoray/nekoray ${DESTDIR}/usr/bin
+	vmkdir usr/bin
+	ln -s /usr/lib/nekoray/nekoray ${DESTDIR}/usr/bin
 }
 
 post_install() {
-   vinstall ${FILESDIR}/nekoray.desktop 644 usr/share/applications
+	vmkdir usr/share/pixmaps
+	vcopy res/public/neko* usr/share/pixmaps
+
+	vinstall ${FILESDIR}/nekoray.desktop 644 usr/share/applications
 }

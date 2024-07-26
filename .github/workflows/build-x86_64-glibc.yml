@@ -91,9 +91,13 @@ jobs:
       #   run: |
       #     (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg bun)
 
-      - name: Build Dart Sdk
+      - name: Build Neovide
         run: |
-          (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg dart-sdk)
+          (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg neovide)
+
+      # - name: Build Dart Sdk
+      #   run: |
+      #     (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg dart-sdk)
 
       # - name: Build SingBox Geosite
       #   run: |
