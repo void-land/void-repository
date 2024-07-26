@@ -66,9 +66,9 @@ jobs:
           common/travis/prepare.sh &&
           common/travis/fetch-xtools.sh
 
-      - name: Build aylurs-gtk-shell
-        run: |
-          (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg aylurs-gtk-shell)
+      # - name: Build aylurs-gtk-shell
+      #   run: |
+      #     (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg aylurs-gtk-shell)
 
       # - name: Build Rofi wayland
       #   run: |
@@ -91,9 +91,9 @@ jobs:
       #   run: |
       #     (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg bun)
 
-      # - name: Build Dart Sdk
-      #   run: |
-      #     (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg dart-sdk)
+      - name: Build Dart Sdk
+        run: |
+          (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg dart-sdk)
 
       # - name: Build SingBox Geosite
       #   run: |
