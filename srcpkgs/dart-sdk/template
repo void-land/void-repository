@@ -15,17 +15,19 @@ changelog="https://github.com/dart-lang/sdk/releases"
 # checksum="e52ff74f2e196fa10aa1aff2b09a1560a13372867e4d90bae669a11b2c44da3b"
 
 do_fetch() {
-	git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+	git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git ${wrksrc}
 
-	ls -la
+	ls -la ${wrksrc}
 }
 
 do_configure() {
+	export PATH="$PATH:${wrksrc}/depot_tools"
+
 	mkdir dart-sdk
 
 	cd dart-sdk
 
-	exec ${wrksrc}/depot_tools/fetch dart
+	fetch dart
 }
 
 do_build() {
