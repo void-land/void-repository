@@ -21,7 +21,7 @@ do_fetch() {
 }
 
 do_configure() {
-	export PATH="$PATH:${wrksrc}/depot_tools"
+	export PATH="$PATH:${wrksrc}"
 
 	mkdir dart-sdk
 
