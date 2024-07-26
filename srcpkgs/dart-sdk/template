@@ -16,10 +16,13 @@ changelog="https://github.com/dart-lang/sdk/releases"
 
 do_fetch() {
 	git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
-	export PATH="$PATH:$PWD/depot_tools"
+
+	ls -la
 }
 
 do_configure() {
+	export PATH="$PATH:$PWD/depot_tools"
+
 	mkdir dart-sdk
 
 	cd dart-sdk
