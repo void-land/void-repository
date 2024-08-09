@@ -69,11 +69,11 @@ jobs:
       - name: sign
         working-directory: void-packages/hostdir/binpkgs/
         run: |
-          ls -la
           xbps-rindex -r $PWD
           xbps-rindex -s --signedby "${{ env.REPO_NAME }}-github-action" --privkey <(printf '%s' "${{ secrets.PRIV_KEY }}") $PWD
           xbps-rindex -S --privkey <(printf '%s' "${{ secrets.PRIV_KEY }}") $PWD/*.xbps
           xbps-rindex -c $PWD
+          ls -la
 
       # - name: checksum
       #   working-directory: void-packages/hostdir/binpkgs/
@@ -96,4 +96,5 @@ jobs:
             void-packages/hostdir/binpkgs/*.xbps
             void-packages/hostdir/binpkgs/*.sha256sum
             void-packages/hostdir/binpkgs/*.sha512sum
+            void-packages/hostdir/binpkgs/*.sig2
             void-packages/hostdir/binpkgs/*repodata
