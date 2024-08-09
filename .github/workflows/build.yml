@@ -18,6 +18,7 @@ jobs:
       XBPS_TARGET_ARCH: ${{ matrix.arch }}
       REPO_OWNER: "${{ github.repository_owner }}"
       REPO_NAME: "${{ github.event.repository.name }}"
+      PATH: "/opt/xbps/usr/bin/:$PATH"
 
     steps:
       - name: checkout ${{ env.REPO_NAME }}
@@ -53,7 +54,6 @@ jobs:
       - name: setup binray bootstrap
         working-directory: void-packages
         run: |
-          export PATH="/opt/xbps/usr/bin/:$PATH"
           ./xbps-src -m masterdir-${{ matrix.arch }} -A ${{ matrix.arch }} binary-bootstrap
 
       - name: build chrome
