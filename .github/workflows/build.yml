@@ -69,6 +69,7 @@ jobs:
       - name: sign
         working-directory: void-packages/hostdir/binpkgs/
         run: |
+          ls -la
           xbps-rindex -r $PWD
           xbps-rindex -s --signedby "${{ env.REPO_NAME }}-github-action" --privkey <(printf '%s' "${{ secrets.PRIV_KEY }}") $PWD
           xbps-rindex -S --privkey <(printf '%s' "${{ secrets.PRIV_KEY }}") $PWD/*.xbps
@@ -84,5 +85,5 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            void-packages/hostdir/binpkgs/*.xbps
+            void-packages/hostdir/binpkgs/*
             void-packages/hostdir/binpkgs/*repodata
