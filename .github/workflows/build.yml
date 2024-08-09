@@ -63,9 +63,8 @@ jobs:
       - name: allow restricted
         working-directory: /etc
         run: |
-          ls -la conf
-          rm -rf conf
-          echo XBPS_ALLOW_RESTRICTED=yes >> conf
+          sudo rm -rf conf
+          sudo echo XBPS_ALLOW_RESTRICTED=yes >> conf
 
       - name: build chrome
         working-directory: void-packages
