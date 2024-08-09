@@ -60,17 +60,10 @@ jobs:
         run: |
           ./xbps-src -m masterdir-${{ matrix.arch }} -A ${{ matrix.arch }} binary-bootstrap
 
-      - name: allow restricted
-        working-directory: /etc
-        run: |
-          sudo rm -rf conf
-          sudo echo XBPS_ALLOW_RESTRICTED=yes >> conf
-
       - name: build chrome
         working-directory: void-packages
         run: |
-          ls -la
-          sed -i '/^repository=nonfree/d' srcpkgs/google-chrome/template
+          sed -i -e '/^restricted=yes/d' -e '/^repository=nonfree/d' srcpkgs/google-chrome/template
           ./xbps-src pkg -j4 -m masterdir-${{ matrix.arch }} google-chrome
 
       - name: sign
