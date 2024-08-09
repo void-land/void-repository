@@ -62,6 +62,7 @@ jobs:
       - name: build chrome
         working-directory: void-packages
         run: |
+          ls -la
           sed -i '/^repository=nonfree/d' srcpkgs/google-chrome/template
           ./xbps-src pkg -j4 -m masterdir-${{ matrix.arch }} google-chrome
 
