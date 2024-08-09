@@ -3,6 +3,7 @@ name: "Build Void Packages x86_64 Glibc"
 on:
   push:
     branches:
+      - bruh
       # - main
   workflow_dispatch:
 
