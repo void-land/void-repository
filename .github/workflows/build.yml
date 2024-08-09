@@ -62,7 +62,8 @@ jobs:
       - name: build chrome
         working-directory: void-packages
         run: |
-          ./xbps-src pkg -j4 -m masterdir-${{ matrix.arch }} hiddify-next
+          sed -i '/^repository=nonfree/d' srcpkgs/google-chrome/template
+          ./xbps-src pkg -j4 -m masterdir-${{ matrix.arch }} google-chrome
 
       # - name: sign
       #   working-directory: void-packages/hostdir/binpkgs/
