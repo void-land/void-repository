@@ -59,6 +59,11 @@ jobs:
         run: |
           ./xbps-src -m masterdir-${{ matrix.arch }} -A ${{ matrix.arch }} binary-bootstrap
 
+      - name: allow restricted
+        working-directory: /etc
+        run: |
+          echo XBPS_ALLOW_RESTRICTED=yes >> conf
+
       - name: build chrome
         working-directory: void-packages
         run: |
