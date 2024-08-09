@@ -65,14 +65,13 @@ jobs:
           sed -i '/^repository=nonfree/d' srcpkgs/google-chrome/template
           ./xbps-src pkg -j4 -m masterdir-${{ matrix.arch }} google-chrome
 
-      # - name: sign
-      #   working-directory: void-packages/hostdir/binpkgs/
-      #   run: |
-      #     export PATH="/opt/xbps/usr/bin/:$PATH"
-      #     xbps-rindex -r $PWD
-      #     xbps-rindex -s --signedby "index-0 <index@mailbox.org>" --privkey <(printf '%s' "${{ secrets.PRIV_KEY }}") $PWD
-      #     xbps-rindex -S --privkey <(printf '%s' "${{ secrets.PRIV_KEY }}") $PWD/*.xbps
-      #     xbps-rindex -c $PWD
+      - name: sign
+        working-directory: void-packages/hostdir/binpkgs/
+        run: |
+          xbps-rindex -r $PWD
+          xbps-rindex -s --signedby "${{ env.REPO_NAME }}-github-action" --privkey <(printf '%s' "${{ secrets.PRIV_KEY }}") $PWD
+          xbps-rindex -S --privkey <(printf '%s' "${{ secrets.PRIV_KEY }}") $PWD/*.xbps
+          xbps-rindex -c $PWD
 
       # - name: checksum
       #   working-directory: void-packages/hostdir/binpkgs/
