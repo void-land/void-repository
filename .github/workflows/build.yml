@@ -23,7 +23,7 @@ jobs:
       - name: checkout ${{ env.REPO_NAME }}
         uses: actions/checkout@v4
         with:
-          ref: master
+          ref: main
           path: ${{ env.REPO_NAME }}
 
       - name: checkout void-packages
@@ -50,12 +50,16 @@ jobs:
           sudo rm -rf /opt/ghc
           sudo rm -rf /opt/hostedtoolcache/CodeQL
 
-      - name: build
+      - name: setup binray bootstrap
+        working-directory: void-packages
         run: |
           export PATH="/opt/xbps/usr/bin/:$PATH"
-          cd void-packages
           ./xbps-src -m masterdir-${{ matrix.arch }} -A ${{ matrix.arch }} binary-bootstrap
-          ./xbps-src pkg -j4 -m masterdir-${{ matrix.arch }} librewolf
+
+      - name: build chrome
+        working-directory: void-packages
+        run: |
+          ./xbps-src pkg -j4 -m masterdir-${{ matrix.arch }} google-chrome
 
       # - name: sign
       #   working-directory: void-packages/hostdir/binpkgs/
