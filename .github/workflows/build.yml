@@ -53,7 +53,6 @@ jobs:
       - name: set path
         run: |
           echo "/opt/xbps/usr/bin/" >> $GITHUB_PATH
-          echo $GITHUB_PATH
 
       - name: setup binray bootstrap
         working-directory: void-packages
@@ -63,7 +62,7 @@ jobs:
       - name: build chrome
         working-directory: void-packages
         run: |
-          ./xbps-src pkg -j4 -m masterdir-${{ matrix.arch }} google-chrome
+          ./xbps-src pkg -j4 -m masterdir-${{ matrix.arch }} hiddify-next
 
       # - name: sign
       #   working-directory: void-packages/hostdir/binpkgs/
