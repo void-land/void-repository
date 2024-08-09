@@ -60,11 +60,16 @@ jobs:
         run: |
           ./xbps-src -m masterdir-${{ matrix.arch }} -A ${{ matrix.arch }} binary-bootstrap
 
-      - name: build chrome
+      # - name: build chrome
+      #   working-directory: void-packages
+      #   run: |
+      #     sed -i -e '/^restricted=yes/d' -e '/^repository=nonfree/d' srcpkgs/google-chrome/template
+      #     ./xbps-src pkg -j4 -m masterdir-${{ matrix.arch }} google-chrome
+
+      - name: build cosmic desktop
         working-directory: void-packages
         run: |
-          sed -i -e '/^restricted=yes/d' -e '/^repository=nonfree/d' srcpkgs/google-chrome/template
-          ./xbps-src pkg -j4 -m masterdir-${{ matrix.arch }} google-chrome
+          ./xbps-src pkg -j4 -m masterdir-${{ matrix.arch }} COSMIC-Desktop
 
       - name: sign
         working-directory: void-packages/hostdir/binpkgs/
