@@ -3,11 +3,11 @@ pkgname=corectrl
 version=1.4.1
 revision=1
 build_style=cmake
-configure_args="-DBUILD_TESTING=OFF"
 hostmakedepends="pkg-config extra-cmake-modules qt5-host-tools qt5-qmake
  kcoreaddons kauth"
 makedepends="botan-devel kauth-devel karchive-devel qt5-charts-devel quazip-devel
- qt5-tools-devel libdrm-devel qt5-svg-devel spdlog pugixml-devel catch2"
+ qt5-tools-devel libdrm-devel qt5-svg-devel spdlog pugixml-devel"
+checkdepends="catch2"
 depends="dbus hicolor-icon-theme qt5-quickcontrols2 qt5-svg glxinfo"
 short_desc="User-friendly hardware control application"
 maintainer="hesam-init <hesam.init@gmail.com>"
@@ -16,3 +16,8 @@ homepage="https://gitlab.com/corectrl/corectrl"
 changelog="https://gitlab.com/corectrl/corectrl/-/raw/master/CHANGELOG.md"
 distfiles="https://gitlab.com/corectrl/corectrl/-/archive/v${version}/corectrl-v${version}.tar.gz"
 checksum="dec3471142884e1940daa85bec7dbd4df1bc5a33cf1c523048031d4916fa9acd"
+make_check=no # requires https://github.com/rollbear/trompeloeil which isn't packaged
+
+if [ -n "$XBPS_CHECK_PKGS" ]; then
+	configure_args+=" -DBUILD_TESTING=ON"
+fi
