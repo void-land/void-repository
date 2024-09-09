@@ -1,5 +1,5 @@
 # Template file for 'corectrl'
-# pkgname=corectrl
+pkgname=corectrl
 version=1.4.1
 revision=1
 build_style=cmake
@@ -13,5 +13,6 @@ short_desc="User-friendly hardware control application"
 maintainer="hesam-init <hesam.init@gmail.com>"
 license="GPL-3.0-or-later"
 homepage="https://gitlab.com/corectrl/corectrl"
+changelog="https://gitlab.com/corectrl/corectrl/-/raw/master/CHANGELOG.md"
 distfiles="https://gitlab.com/corectrl/corectrl/-/archive/v${version}/corectrl-v${version}.tar.gz"
 checksum="dec3471142884e1940daa85bec7dbd4df1bc5a33cf1c523048031d4916fa9acd"
