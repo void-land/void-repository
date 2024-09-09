@@ -69,7 +69,7 @@ jobs:
       - name: build corectrl
         working-directory: void-packages
         run: |
-          ./xbps-src pkg -j4 -m masterdir-${{ matrix.arch }} corectrl
+          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} corectrl
 
       - name: sign
         working-directory: void-packages/hostdir/binpkgs/
