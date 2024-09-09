@@ -20,4 +20,6 @@ make_check=no # requires https://github.com/rollbear/trompeloeil which isn't pac
 
 if [ -n "$XBPS_CHECK_PKGS" ]; then
 	configure_args+=" -DBUILD_TESTING=ON"
+else
+	configure_args+=" -DBUILD_TESTING=OFF"
 fi
