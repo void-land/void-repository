@@ -66,10 +66,10 @@ jobs:
       #     sed -i -e '/^restricted=yes/d' -e '/^repository=nonfree/d' srcpkgs/google-chrome/template
       #     ./xbps-src pkg -j4 -m masterdir-${{ matrix.arch }} google-chrome
 
-      - name: build cosmic desktop
+      - name: build corectrl
         working-directory: void-packages
         run: |
-          ./xbps-src pkg -j4 -m masterdir-${{ matrix.arch }} COSMIC-Desktop
+          ./xbps-src pkg -j4 -m masterdir-${{ matrix.arch }} corectrl
 
       - name: sign
         working-directory: void-packages/hostdir/binpkgs/
