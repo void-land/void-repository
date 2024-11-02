@@ -60,16 +60,15 @@ jobs:
         run: |
           ./xbps-src -m masterdir-${{ matrix.arch }} -A ${{ matrix.arch }} binary-bootstrap
 
-      # - name: build chrome
-      #   working-directory: void-packages
-      #   run: |
-      #     sed -i -e '/^restricted=yes/d' -e '/^repository=nonfree/d' srcpkgs/google-chrome/template
-      #     ./xbps-src pkg -j4 -m masterdir-${{ matrix.arch }} google-chrome
-
-      - name: build corectrl
+      - name: build soundux
         working-directory: void-packages
         run: |
-          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} corectrl
+          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} soundux
+
+      # - name: build corectrl
+      #   working-directory: void-packages
+      #   run: |
+      #     ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} corectrl
 
       - name: sign
         working-directory: void-packages/hostdir/binpkgs/
