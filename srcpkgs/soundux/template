@@ -3,6 +3,7 @@ pkgname=soundux
 version=0.2.7
 revision=1
 build_style=cmake
+make_build_args="APPINDICATOR=ayatana-appindicator3-0.1"
 hostmakedepends="pkg-config"
 makedepends="pipewire-devel pulseaudio-devel libdwarf-devel libX11-devel libwnck-devel libayatana-appindicator-devel gtk+3-devel webkit2gtk-devel openssl-devel"
 depends="pipewire-devel"
